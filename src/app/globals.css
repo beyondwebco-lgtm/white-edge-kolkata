@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-black: #050505;
+  --color-brand-charcoal: #111214;
+  --color-brand-offwhite: #F5F5F3;
+  --color-brand-red: #EF2028;
+  --color-brand-darkred: #B9131B;
+  --color-brand-grey: #A7A7A7;
+  --color-brand-silver: #D6D6D6;
+  --font-heading: var(--font-heading-oswald), sans-serif;
+  --font-sans: var(--font-jakarta), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #111214;
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #EF2028;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Utility Effects */
+.red-glow {
+  box-shadow: 0 0 25px rgba(239, 32, 40, 0.35);
+}
+
+.red-glow-sm {
+  box-shadow: 0 0 12px rgba(239, 32, 40, 0.25);
+}
+
+.red-text-glow {
+  text-shadow: 0 0 15px rgba(239, 32, 40, 0.5);
+}
