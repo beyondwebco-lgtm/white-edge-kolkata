@@ -30,11 +30,7 @@ export default function AboutSection() {
             </p>
 
             <p className="text-sm sm:text-base text-[#4A5568] leading-relaxed">
-              From iconic storefronts and illuminated 3D letters to ACP cladding, pylon signs, wayfinding systems, glass branding, and custom fabrication, every project is designed with precision, built with premium materials, and installed to the highest standards of quality and durability.
-            </p>
-
-            <p className="text-sm sm:text-base text-[#4A5568] leading-relaxed">
-              Our approach combines creativity, engineering, and craftsmanship to deliver signage that is visually striking, technically reliable, and built to perform for years.
+              From iconic storefronts and illuminated 3D letters to ACP cladding, SS 3D letters, flex boards, pylon signs, wayfinding systems, glass branding, and custom fabrication, we deliver comprehensive signage solutions tailored to every brand. Each project is thoughtfully designed with precision, crafted using premium-quality materials, and professionally installed to ensure exceptional finish, durability, and long-lasting performance.
             </p>
 
             {/* Highlighted Statement Box */}

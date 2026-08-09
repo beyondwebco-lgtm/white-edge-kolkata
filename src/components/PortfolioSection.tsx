@@ -17,7 +17,7 @@ export default function PortfolioSection() {
     "Storefronts",
     "Façade Branding",
     "Pylon Signs",
-    "Interior Branding",
+    "Internal Branding",
     "Glass Films",
     "Commercial Graphics",
   ];
@@ -45,7 +45,7 @@ export default function PortfolioSection() {
           </h2>
 
           <p className="text-base sm:text-lg text-gray-600 font-normal leading-relaxed">
-            Browse our portfolio of completed storefronts, illuminated LED 3D letters, fuel station canopies, corporate glass branding, and interior murals.
+            Browse our portfolio of completed storefronts, illuminated LED 3D letters, fuel station canopies, corporate glass branding, and internal branding murals.
           </p>
         </div>
 

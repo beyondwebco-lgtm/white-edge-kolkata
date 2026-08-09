@@ -12,12 +12,13 @@ export default function JsonLd() {
     email: SITE_CONFIG.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Main Commercial Hub",
-      addressLocality: "Kolkata",
-      addressRegion: "West Bengal",
+      streetAddress: "Punchiry Building, Old Military Road, Payyanakkal",
+      addressLocality: "Kozhikode",
+      addressRegion: "Kerala",
+      postalCode: "673003",
       addressCountry: "IN",
     },
-    openingHours: "Mo-Sa 09:00-20:00",
+    openingHours: "Mo-Sa 09:00-18:00",
     image: `${SITE_CONFIG.url}/assets/logo.jpeg`,
     priceRange: "$$",
     sameAs: [

@@ -53,7 +53,7 @@ export default function IndustriesSection() {
           </h2>
 
           <p className="text-base sm:text-lg text-[#A7A7A7] font-light leading-relaxed">
-            We deliver tailored architectural branding, high-visibility storefront identity, and interior navigation across diverse commercial sectors.
+            We deliver tailored architectural branding, high-visibility storefront identity, and internal navigation across diverse commercial sectors.
           </p>
         </div>
 

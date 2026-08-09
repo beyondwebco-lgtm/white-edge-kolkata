@@ -56,7 +56,7 @@ export default function ServicesSection() {
     "Illuminated",
     "Architectural",
     "Façade",
-    "Interior",
+    "Internal Branding",
     "Services",
     "Planning",
   ];
