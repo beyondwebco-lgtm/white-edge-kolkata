@@ -43,6 +43,24 @@ export default function ContactSection() {
 
     setError("");
     setSubmitted(true);
+
+    const messageLines = [
+      `*New Quote & Survey Request*`,
+      `----------------------------------`,
+      `*Name:* ${formData.name}`,
+      formData.company ? `*Company:* ${formData.company}` : null,
+      `*Phone:* ${formData.phone}`,
+      `*Email:* ${formData.email}`,
+      formData.location ? `*Location:* ${formData.location}` : null,
+      `*Service Required:* ${formData.service}`,
+      formData.details ? `*Details & Dimensions:* ${formData.details}` : null,
+      fileName ? `*Attached File:* ${fileName}` : null,
+    ].filter(Boolean);
+
+    const encodedText = encodeURIComponent(messageLines.join("\n"));
+    const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsappRaw}?text=${encodedText}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
