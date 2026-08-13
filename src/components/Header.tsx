@@ -44,7 +44,7 @@ export default function Header() {
         <Link href="#hero" className="flex items-center gap-3 group">
           <div className="relative h-10 sm:h-11 w-40 sm:w-44 group-hover:scale-105 transition-transform duration-300">
             <Image
-              src="/assets/logo-cropped.png"
+              src="/assets/white-edge-logo.png"
               alt="White Edge Signages Logo"
               fill
               className="object-contain"

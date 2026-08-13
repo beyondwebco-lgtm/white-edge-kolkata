@@ -29,7 +29,7 @@ export default function Footer() {
             <Link href="#hero" className="inline-block group">
               <div className="relative h-12 w-48 bg-white/95 rounded-lg p-1.5 shadow-lg group-hover:shadow-[#EF2028]/30 group-hover:scale-105 transition-all duration-300">
                 <Image
-                  src="/assets/logo-cropped.png"
+                  src="/assets/white-edge-logo.png"
                   alt="White Edge Signages Logo"
                   fill
                   className="object-contain p-0.5"

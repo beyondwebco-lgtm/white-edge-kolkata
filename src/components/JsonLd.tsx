@@ -19,7 +19,7 @@ export default function JsonLd() {
       addressCountry: "IN",
     },
     openingHours: "Mo-Sa 09:00-18:00",
-    image: `${SITE_CONFIG.url}/assets/logo.jpeg`,
+    image: `${SITE_CONFIG.url}/assets/white-edge-logo.png`,
     priceRange: "$$",
     sameAs: [
       SITE_CONFIG.socials.instagram,

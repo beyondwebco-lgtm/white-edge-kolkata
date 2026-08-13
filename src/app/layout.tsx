@@ -64,9 +64,9 @@ export const metadata: Metadata = {
     ],
   },
   icons: {
-    icon: "/assets/logo-cropped.png",
-    shortcut: "/assets/logo-cropped.png",
-    apple: "/assets/logo-cropped.png",
+    icon: "/assets/white-edge-logo.png",
+    shortcut: "/assets/white-edge-logo.png",
+    apple: "/assets/white-edge-logo.png",
   },
 };
 

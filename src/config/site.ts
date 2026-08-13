@@ -169,20 +169,11 @@ export const SITE_CONFIG = {
     {
       id: "maintenance-service",
       title: "Signage Renovation & Maintenance",
-      shortDesc: "Inspection, cleaning, electrical servicing, replacement, renovation, and preventive maintenance.",
-      fullDesc: "Scheduled and emergency signage maintenance and renovation including LED driver replacement, face cleaning, structural tightening, face refurbishment, and wiring audits.",
+      shortDesc: "Comprehensive signage renovation, structural refurbishment, LED upgrades, face cleaning, and preventive maintenance.",
+      fullDesc: "Breathe new life into aging, weathered, or damaged signboards. We provide complete signage renovation, structural reinforcement, high-efficiency LED module & driver upgrades, ACP panel recoating, face panel replacement, electrical audits, and scheduled preventive maintenance.",
       category: "Services",
       icon: "ShieldAlert",
       image: "/assets/img22.jpg",
-    },
-    {
-      id: "repair-refurbishment",
-      title: "Signage Repair and Refurbishment",
-      shortDesc: "Restoration, rebranding, illumination repair, panel replacement, and structural fixes.",
-      fullDesc: "Breathe new life into aging or damaged signboards with fresh LED modules, recoated ACP panels, updated logo faces, and structural reinforcement.",
-      category: "Services",
-      icon: "RotateCcw",
-      image: "/assets/img28.jpg",
     },
     {
       id: "site-survey-consultation",
@@ -378,7 +369,7 @@ export const SITE_CONFIG = {
     {
       step: "06",
       title: "Support",
-      desc: "Provide maintenance, repair, refurbishment, and long-term service assistance.",
+      desc: "Provide signage renovation, structural refurbishment, preventive maintenance, and long-term service assistance.",
     },
   ],
   testimonials: [
@@ -429,9 +420,9 @@ export const SITE_CONFIG = {
         "Yes. The company can deliver signage for retail spaces, offices, hospitality venues, healthcare facilities, educational institutions, petrol bunks, and commercial developments.",
     },
     {
-      question: "Do you provide repairs and maintenance?",
+      question: "Do you provide signage renovation and maintenance?",
       answer:
-        "Yes. Services include inspections, electrical repairs, replacement, repainting, refurbishment, cleaning, and ongoing signage maintenance.",
+        "Yes. We provide complete signage renovation, LED driver & module replacements, face panel refurbishment, structural repairs, electrical audits, and scheduled preventive maintenance.",
     },
     {
       question: "Do you offer glass films and internal wall branding?",
