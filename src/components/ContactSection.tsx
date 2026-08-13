@@ -236,7 +236,6 @@ export default function ContactSection() {
                       <input
                         type="text"
                         required
-                        placeholder="e.g. Rahul Sharma"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-[#050505] border border-white/10 text-white text-sm focus:outline-none focus:border-[#EF2028]"
@@ -249,7 +248,6 @@ export default function ContactSection() {
                       </label>
                       <input
                         type="text"
-                        placeholder="e.g. Retail Enterprises"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-[#050505] border border-white/10 text-white text-sm focus:outline-none focus:border-[#EF2028]"
@@ -265,7 +263,6 @@ export default function ContactSection() {
                       <input
                         type="tel"
                         required
-                        placeholder="e.g. +91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-[#050505] border border-white/10 text-white text-sm focus:outline-none focus:border-[#EF2028]"
@@ -279,7 +276,6 @@ export default function ContactSection() {
                       <input
                         type="email"
                         required
-                        placeholder="e.g. rahul@brand.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-[#050505] border border-white/10 text-white text-sm focus:outline-none focus:border-[#EF2028]"
@@ -294,7 +290,6 @@ export default function ContactSection() {
                       </label>
                       <input
                         type="text"
-                        placeholder="e.g. Park Street, Kolkata"
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg bg-[#050505] border border-white/10 text-white text-sm focus:outline-none focus:border-[#EF2028]"
@@ -325,7 +320,6 @@ export default function ContactSection() {
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="Specify dimensions, elevation height, daylight orientation, material preference or special guidelines..."
                       value={formData.details}
                       onChange={(e) => setFormData({ ...formData, details: e.target.value })}
                       className="w-full px-4 py-3 rounded-lg bg-[#050505] border border-white/10 text-white text-sm focus:outline-none focus:border-[#EF2028]"
