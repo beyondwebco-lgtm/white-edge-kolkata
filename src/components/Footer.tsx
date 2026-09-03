@@ -113,37 +113,43 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="#hero" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
+                <Link href="/#hero" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
+                <Link href="/our-work" className="text-white font-semibold hover:text-[#EF2028] transition-colors flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#EF2028]" />
+                  Our Work (Gallery)
+                </Link>
+              </li>
+              <li>
+                <Link href="/#about" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
+                <Link href="/#services" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="#projects" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
+                <Link href="/#projects" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
                   Projects Portfolio
                 </Link>
               </li>
               <li>
-                <Link href="#industries" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
+                <Link href="/#industries" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
                   Industries Served
                 </Link>
               </li>
               <li>
-                <Link href="#why-us" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
+                <Link href="/#why-us" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
                   Why Choose Us
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
+                <Link href="/#contact" className="text-[#A7A7A7] hover:text-[#EF2028] transition-colors">
                   Contact Us
                 </Link>
               </li>

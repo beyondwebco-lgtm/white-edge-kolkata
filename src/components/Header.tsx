@@ -22,13 +22,14 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#hero" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Projects", href: "#projects" },
-    { name: "Industries", href: "#industries" },
-    { name: "Why Us", href: "#why-us" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/#hero" },
+    { name: "Our Work", href: "/our-work" },
+    { name: "Services", href: "/#services" },
+    { name: "About", href: "/#about" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Industries", href: "/#industries" },
+    { name: "Why Us", href: "/#why-us" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -41,7 +42,7 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="#hero" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <div className="relative h-10 sm:h-11 w-40 sm:w-44 group-hover:scale-105 transition-transform duration-300">
             <Image
               src="/assets/white-edge-logo.png"

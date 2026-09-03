@@ -127,6 +127,17 @@ export default function PortfolioSection() {
             </div>
           ))}
         </div>
+
+        {/* View All Projects Gallery CTA */}
+        <div className="mt-14 text-center">
+          <Link
+            href="/our-work"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-[#111214] hover:bg-[#EF2028] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg hover:shadow-red-500/25 hover:scale-105 active:scale-95 transition-all duration-300 group"
+          >
+            <span>Explore All 23+ Real Signage Projects in Our Work Gallery</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+          </Link>
+        </div>
       </div>
 
       {/* Lightbox Project Modal */}
