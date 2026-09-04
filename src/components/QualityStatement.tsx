@@ -38,7 +38,7 @@ export default function QualityStatement() {
 
         <div className="pt-4">
           <Link
-            href="#contact"
+            href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-md bg-[#EF2028] text-sm font-bold uppercase tracking-wider text-white shadow-2xl shadow-[#EF2028]/30 hover:bg-[#B9131B] hover:scale-105 active:scale-95 transition-all duration-300 group"
           >
             Start Your Signage Project

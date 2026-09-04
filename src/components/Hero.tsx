@@ -67,7 +67,7 @@ export default function Hero() {
 
           {/* Secondary CTA */}
           <Link
-            href="#contact"
+            href="/contact"
             className="w-full sm:w-auto px-8 py-4 rounded-md bg-[#111214] text-sm font-bold uppercase tracking-wider text-white hover:bg-[#262626] transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
           >
             Request a Free Quote

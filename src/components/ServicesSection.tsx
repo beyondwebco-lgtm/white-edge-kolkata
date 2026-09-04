@@ -25,6 +25,7 @@ import {
   ArrowRight,
   CheckCircle,
   X,
+  Maximize2,
 } from "lucide-react";
 
 export default function ServicesSection() {
@@ -103,48 +104,65 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* Services Grid (17 Services) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredServices.map((service, index) => {
+        {/* Services Grid (16 Services) - Scaled down with balanced 4-column layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start justify-center">
+          {filteredServices.map((service) => {
             const IconComponent = iconMap[service.icon] || PenTool;
+            const imgWidth = service.width || 1024;
+            const imgHeight = service.height || 1536;
+
             return (
               <div
                 key={service.id}
-                className="group relative rounded-2xl bg-[#111214] border border-white/5 hover:border-[#EF2028]/50 overflow-hidden shadow-xl transition-all duration-500 hover:-translate-y-1.5 flex flex-col justify-between"
+                className="group relative rounded-2xl bg-[#111214] border border-white/10 hover:border-[#EF2028]/60 overflow-hidden shadow-xl transition-all duration-500 hover:-translate-y-1.5 flex flex-col justify-between w-full max-w-[320px] mx-auto"
               >
-                {/* Image Backdrop Banner */}
-                <div className="relative h-44 w-full overflow-hidden">
+                {/* Image Box Perfectly Sized to Image Dimensions (Scaled Down, Zero Cropping, Zero Letterbox) */}
+                <div 
+                  onClick={() => setSelectedService(service)}
+                  className="relative w-full overflow-hidden cursor-pointer bg-[#0e1014]"
+                  style={{ aspectRatio: `${imgWidth} / ${imgHeight}` }}
+                >
                   <Image
                     src={service.image}
                     alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-75 group-hover:brightness-90"
+                    width={imgWidth}
+                    height={imgHeight}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block select-none"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#111214] via-[#111214]/50 to-transparent" />
-                  
-                  {/* Category Pill */}
-                  <span className="absolute top-3 right-3 text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-[#050505]/80 border border-white/10 px-2.5 py-1 rounded-md backdrop-blur-sm">
-                    {service.category}
-                  </span>
 
-                  {/* Icon Accent */}
-                  <div className="absolute bottom-3 left-4 p-3 rounded-xl bg-[#050505] border border-[#EF2028]/40 text-[#EF2028] shadow-lg group-hover:bg-[#EF2028] group-hover:text-white transition-all duration-300">
+                  {/* Top Category Badge */}
+                  <div className="absolute top-3 right-3 z-20">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-white bg-black/80 border border-white/20 px-3 py-1 rounded-full backdrop-blur-md shadow-md">
+                      {service.category}
+                    </span>
+                  </div>
+
+                  {/* Floating Icon Accent */}
+                  <div className="absolute bottom-3 left-3 z-20 p-2.5 rounded-xl bg-black/80 border border-white/20 text-[#EF2028] shadow-lg backdrop-blur-md group-hover:bg-[#EF2028] group-hover:text-white group-hover:border-[#EF2028] transition-all duration-300">
                     <IconComponent className="w-5 h-5" />
+                  </div>
+
+                  {/* Hover Quick View Trigger */}
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center pointer-events-none">
+                    <span className="px-3.5 py-1.5 rounded-full bg-black/80 text-white text-xs font-bold uppercase tracking-wider border border-white/20 flex items-center gap-1.5 shadow-xl">
+                      <Maximize2 className="w-3.5 h-3.5 text-[#EF2028]" /> Full View
+                    </span>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
+                {/* Content Area */}
+                <div className="p-6 flex-grow flex flex-col justify-between space-y-4 bg-[#111214]">
                   <div>
-                    <h3 className="text-xl font-heading font-bold text-white uppercase tracking-wide group-hover:text-[#EF2028] transition-colors">
+                    <h3 className="text-xl font-heading font-bold text-white uppercase tracking-wide group-hover:text-[#EF2028] transition-colors leading-tight">
                       {service.title}
                     </h3>
-                    <p className="text-xs text-[#A7A7A7] mt-2 leading-relaxed line-clamp-3">
+                    <p className="text-xs text-[#C5C5C5] mt-2.5 leading-relaxed line-clamp-3">
                       {service.shortDesc}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                  <div className="pt-4 border-t border-white/10 flex items-center justify-between">
                     <button
                       onClick={() => setSelectedService(service)}
                       className="text-xs font-bold uppercase tracking-wider text-[#EF2028] hover:text-white flex items-center gap-1.5 transition-colors"
@@ -153,10 +171,10 @@ export default function ServicesSection() {
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </button>
                     <Link
-                      href="#contact"
-                      className="text-[11px] font-semibold text-[#A7A7A7] hover:text-[#F5F5F3]"
+                      href="/contact"
+                      className="text-xs font-semibold text-gray-400 hover:text-white transition-colors"
                     >
-                      Enquire
+                      Enquire Now
                     </Link>
                   </div>
                 </div>
@@ -168,43 +186,56 @@ export default function ServicesSection() {
 
       {/* Service Detail Modal */}
       {selectedService && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-2xl bg-[#111214] border border-[#EF2028]/40 rounded-2xl overflow-hidden shadow-2xl space-y-6">
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setSelectedService(null)}
+        >
+          <div 
+            className="relative w-full max-w-2xl bg-[#111214] border border-[#EF2028]/40 rounded-2xl overflow-hidden shadow-2xl space-y-6 max-h-[92vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               onClick={() => setSelectedService(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/60 text-white hover:text-[#EF2028] transition-colors"
+              className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-black/75 text-white hover:bg-[#EF2028] transition-colors shadow-lg"
+              aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="relative h-56 w-full">
+            {/* Whole Contained Modal Image Matching Aspect Ratio */}
+            <div 
+              className="relative w-full max-h-[48vh] max-w-lg mx-auto bg-transparent flex items-center justify-center overflow-hidden"
+              style={{ aspectRatio: `${selectedService.width || 1024} / ${selectedService.height || 1536}` }}
+            >
               <Image
                 src={selectedService.image}
                 alt={selectedService.title}
-                fill
-                className="object-cover"
+                width={selectedService.width || 1024}
+                height={selectedService.height || 1536}
+                className="w-full h-full object-contain"
+                priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111214] via-[#111214]/60 to-transparent" />
-              <div className="absolute bottom-4 left-6">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#EF2028] bg-black/70 px-3 py-1 rounded">
+              <div className="absolute bottom-3 left-4 z-20">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-white bg-[#EF2028] px-3 py-1 rounded shadow-md">
                   {selectedService.category}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-white uppercase mt-2">
-                  {selectedService.title}
-                </h3>
               </div>
             </div>
 
             <div className="p-6 space-y-4 pt-0">
+              <h3 className="text-2xl sm:text-3xl font-heading font-extrabold text-white uppercase drop-shadow-md">
+                {selectedService.title}
+              </h3>
+
               <p className="text-sm sm:text-base text-[#F5F5F3] leading-relaxed">
                 {selectedService.fullDesc}
               </p>
 
-              <div className="p-4 rounded-xl bg-[#050505] border border-white/5 space-y-2">
+              <div className="p-4 rounded-xl bg-[#0a0b0d] border border-white/10 space-y-2">
                 <h4 className="text-xs uppercase font-mono font-bold text-[#EF2028]">
                   Key Service Highlights
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#A7A7A7]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#C5C5C5]">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3.5 h-3.5 text-[#EF2028]" />
                     <span>100% Weatherproof Fabrication</span>
@@ -227,14 +258,14 @@ export default function ServicesSection() {
               <div className="flex items-center justify-end gap-3 pt-2">
                 <button
                   onClick={() => setSelectedService(null)}
-                  className="px-5 py-2.5 rounded-md bg-white/10 text-xs font-bold uppercase text-white hover:bg-white/20"
+                  className="px-5 py-2.5 rounded-md bg-white/10 text-xs font-bold uppercase text-white hover:bg-white/20 transition-colors"
                 >
                   Close
                 </button>
                 <Link
-                  href="#contact"
+                  href="/contact"
                   onClick={() => setSelectedService(null)}
-                  className="px-6 py-2.5 rounded-md bg-[#EF2028] text-xs font-bold uppercase tracking-wider text-white shadow-lg hover:bg-[#B9131B]"
+                  className="px-6 py-2.5 rounded-md bg-[#EF2028] text-xs font-bold uppercase tracking-wider text-white shadow-lg hover:bg-[#B9131B] transition-colors"
                 >
                   Request Quote for {selectedService.title}
                 </Link>

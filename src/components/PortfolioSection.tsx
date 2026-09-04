@@ -198,7 +198,7 @@ export default function PortfolioSection() {
 
               <div className="pt-6 border-t border-gray-200 space-y-3">
                 <Link
-                  href="#contact"
+                  href="/contact"
                   onClick={() => setActiveModalProject(null)}
                   className="w-full py-3.5 px-4 rounded-md bg-[#EF2028] text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-[#B9131B] flex items-center justify-center gap-2"
                 >

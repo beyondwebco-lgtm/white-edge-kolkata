@@ -29,7 +29,7 @@ export default function Header() {
     { name: "Projects", href: "/#projects" },
     { name: "Industries", href: "/#industries" },
     { name: "Why Us", href: "/#why-us" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -70,7 +70,7 @@ export default function Header() {
         {/* Desktop Header CTA Button */}
         <div className="hidden lg:flex items-center gap-4">
           <Link
-            href="#contact"
+            href="/contact"
             className="relative group overflow-hidden rounded-md bg-[#EF2028] px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:bg-[#B9131B] hover:shadow-lg hover:scale-105 active:scale-95"
           >
             <span className="relative z-10 flex items-center gap-2">
@@ -113,7 +113,7 @@ export default function Header() {
 
           <div className="pt-6 border-t border-gray-200 mt-6">
             <Link
-              href="#contact"
+              href="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-md bg-[#EF2028] text-xs font-bold uppercase tracking-wider text-white shadow-lg hover:bg-[#B9131B]"
             >

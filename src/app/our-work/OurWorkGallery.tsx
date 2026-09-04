@@ -114,8 +114,8 @@ export default function OurWorkGallery() {
         </p>
       </div>
 
-      {/* Full Collage Grid - 10 Unique Projects */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {/* Full Collage Grid - 10 Unique Projects (4 Items in One Row) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
         {OUR_WORK_PROJECTS.map((project, idx) => {
           const currentSlide = cardImageIndices[project.id] || 0;
           const currentImage = project.images[currentSlide] || project.images[0];
@@ -127,38 +127,38 @@ export default function OurWorkGallery() {
               onClick={() => handleOpenModal(idx)}
               className="group relative bg-[#0E0F12] rounded-2xl overflow-hidden border border-gray-200/80 hover:border-[#EF2028] shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col cursor-pointer"
             >
-              {/* Image Slideshow Container */}
-              <div className="relative h-72 sm:h-80 w-full overflow-hidden flex items-center justify-center bg-[#090A0D]">
+              {/* Image Slideshow Container - Scaled Down */}
+              <div className="relative h-52 sm:h-60 w-full overflow-hidden flex items-center justify-center bg-[#090A0D]">
                 {/* Ambient Blurred Background */}
                 <Image
                   src={currentImage}
                   alt=""
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   className="object-cover blur-2xl opacity-35 scale-125 transition-transform duration-700 group-hover:scale-135"
                   aria-hidden="true"
                 />
 
                 {/* Main Signage Image */}
-                <div className="relative w-full h-full p-3.5 flex items-center justify-center z-10">
+                <div className="relative w-full h-full p-2.5 flex items-center justify-center z-10">
                   <Image
                     src={currentImage}
                     alt={project.title}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-contain p-2 group-hover:scale-105 transition-all duration-500 drop-shadow-xl"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-contain p-1.5 group-hover:scale-105 transition-all duration-500 drop-shadow-xl"
                   />
                 </div>
 
                 {/* Top Client & Multi-Image Badge */}
-                <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between gap-2">
-                  <span className="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-black/85 backdrop-blur-md text-white border border-white/20 shadow-md truncate">
+                <div className="absolute top-2.5 left-2.5 right-2.5 z-20 flex items-center justify-between gap-1.5">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/85 backdrop-blur-md text-white border border-white/20 shadow-md truncate">
                     {project.client}
                   </span>
 
                   {hasMultipleImages && (
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-black/80 backdrop-blur-md text-white border border-white/20 shadow flex items-center gap-1.5">
-                      <Images className="w-3 h-3 text-[#EF2028]" />
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase bg-black/80 backdrop-blur-md text-white border border-white/20 shadow flex items-center gap-1">
+                      <Images className="w-2.5 h-2.5 text-[#EF2028]" />
                       {currentSlide + 1}/{project.images.length}
                     </span>
                   )}
@@ -169,26 +169,26 @@ export default function OurWorkGallery() {
                   <>
                     <button
                       onClick={(e) => handleCardPrevSlide(e, project.id, project.images.length)}
-                      className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/70 hover:bg-[#EF2028] text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 shadow-md"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-black/70 hover:bg-[#EF2028] text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 shadow-md"
                       aria-label="Previous image"
                     >
-                      <ChevronLeft className="w-4 h-4" />
+                      <ChevronLeft className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={(e) => handleCardNextSlide(e, project.id, project.images.length)}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/70 hover:bg-[#EF2028] text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 shadow-md"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-1.5 rounded-full bg-black/70 hover:bg-[#EF2028] text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 shadow-md"
                       aria-label="Next image"
                     >
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-3.5 h-3.5" />
                     </button>
 
                     {/* Slideshow Dot Indicators */}
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">
+                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full">
                       {project.images.map((_, dotIdx) => (
                         <span
                           key={dotIdx}
                           className={`w-1.5 h-1.5 rounded-full transition-all ${
-                            currentSlide === dotIdx ? "bg-[#EF2028] w-3" : "bg-white/60"
+                            currentSlide === dotIdx ? "bg-[#EF2028] w-2.5" : "bg-white/60"
                           }`}
                         />
                       ))}
@@ -197,28 +197,28 @@ export default function OurWorkGallery() {
                 )}
 
                 {/* Hover Overlay with Technical View Trigger */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 z-10 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3 z-10 pointer-events-none">
                   <div className="flex items-center justify-between w-full text-white">
-                    <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 text-red-400">
-                      <Maximize2 className="w-3.5 h-3.5 text-[#EF2028]" /> Click for Technical Specs & Quote
+                    <span className="text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 text-red-400">
+                      <Maximize2 className="w-3 h-3 text-[#EF2028]" /> View Details & Quote
                     </span>
-                    <span className="p-1.5 rounded-full bg-white/20 backdrop-blur-md text-white">
-                      <Eye className="w-4 h-4" />
+                    <span className="p-1 rounded-full bg-white/20 backdrop-blur-md text-white">
+                      <Eye className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Bottom Card Content */}
-              <div className="p-5 bg-white flex-grow flex flex-col justify-between space-y-4">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="text-[#EF2028] font-bold uppercase tracking-wider">
+              {/* Bottom Card Content - Scaled Down */}
+              <div className="p-4 bg-white flex-grow flex flex-col justify-between space-y-3">
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-[11px] font-semibold">
+                    <span className="text-[#EF2028] font-bold uppercase tracking-wider text-[10px]">
                       {project.category}
                     </span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-heading font-bold text-[#111214] group-hover:text-[#EF2028] transition-colors leading-snug">
+                  <h3 className="text-sm sm:text-base font-heading font-bold text-[#111214] group-hover:text-[#EF2028] transition-colors leading-snug line-clamp-2">
                     {project.title}
                   </h3>
 
@@ -228,26 +228,26 @@ export default function OurWorkGallery() {
                 </div>
 
                 {/* Materials & Action Footer */}
-                <div className="pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
+                <div className="pt-2.5 border-t border-gray-100 flex items-center justify-between gap-2">
                   <div className="flex flex-wrap gap-1">
                     {project.materials.slice(0, 2).map((mat, mIdx) => (
                       <span
                         key={mIdx}
-                        className="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-medium text-gray-600 truncate max-w-[120px]"
+                        className="px-1.5 py-0.5 rounded bg-gray-100 text-[10px] font-medium text-gray-600 truncate max-w-[100px]"
                       >
                         {mat}
                       </span>
                     ))}
                     {project.materials.length > 2 && (
-                      <span className="px-1.5 py-0.5 text-[10px] text-gray-400">
+                      <span className="px-1 py-0.5 text-[9px] text-gray-400">
                         +{project.materials.length - 2}
                       </span>
                     )}
                   </div>
 
-                  <span className="text-xs font-bold text-[#EF2028] group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
-                    View Details
-                    <ArrowRight className="w-3.5 h-3.5" />
+                  <span className="text-xs font-bold text-[#EF2028] group-hover:translate-x-1 transition-transform flex items-center gap-0.5 shrink-0">
+                    View
+                    <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
               </div>
@@ -441,7 +441,7 @@ export default function OurWorkGallery() {
                 </a>
 
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   onClick={() => setActiveModalIndex(null)}
                   className="w-full py-3 px-4 rounded-xl bg-[#111214] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 text-center"
                 >
@@ -471,7 +471,7 @@ export default function OurWorkGallery() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Link
-              href="/#contact"
+              href="/contact"
               className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#EF2028] hover:bg-[#B9131B] text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all duration-300 hover:scale-105"
             >
               Get a Free Consultation

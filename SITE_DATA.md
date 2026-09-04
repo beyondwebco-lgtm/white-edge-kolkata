@@ -52,16 +52,16 @@ This document contains the complete and official reference data for the **White 
 | 4 | **Acrylic & Stainless-Steel 3D Letters** | Dimensional | CNC & laser-cut SS 304 marine grade, titanium gold, brass, and Astari cast acrylic dimensional letters. |
 | 5 | **Glow Sign Boards** | Illuminated | Heavy-duty backlit flex signboards featuring vibrant translucent graphics and interior LED arrays. |
 | 6 | **Pylon & Totem Signage** | Outdoor | Monolithic highway totems with structural steel framing, wind-load rating, and dual-sided illumination. |
-| 7 | **One-Way Vision Pasting** | Window | Perforated window films allowing vivid exterior branding while preserving interior optical clarity. |
-| 8 | **Frosted Film & Glass Branding** | Internal Branding | Plotter-cut frosted privacy films with corporate logos, geometric patterns, and privacy dustings. |
-| 9 | **Commercial Vinyl Graphics** | Graphics | High-tack polymeric UV-cured vinyl wraps for walls, retail storefronts, floors, and promotional areas. |
-| 10 | **Feature Murals & Internal Branding** | Internal Branding | Seamless architectural wall coverings communicating brand heritage, values, or custom biophilic artwork. |
-| 11 | **Signage Installation** | Services | Certified rigging technicians utilizing boom lifts, scaffolding, and load-tested anchor bolts. |
-| 12 | **Signage Renovation & Maintenance** | Services | LED module & driver retrofits, structural reinforcement, ACP recoating, face panel replacement & maintenance. |
-| 13 | **Site Survey & Consultation** | Planning | Precise laser measurements, electrical load calculations, angle audits, and structural suitability reports. |
-| 14 | **Signage Design & Project Planning** | Planning | Photorealistic 3D architectural mockups, structural CAD drawings, material BOQs, and milestone schedules. |
-| 15 | **Wayfinding & Directional Signage** | Architectural | Directory monoliths, ceiling suspended arrows, tactile braille signage, and floor zoning maps. |
-| 16 | **Commercial & Retail Signage Solutions**| Turnkey | End-to-end multi-asset retail packages combining pylon, entrance 3D LED letters, POS displays & window films. |
+| 7 | **Frosted Film & Glass Branding** | Internal Branding | Plotter-cut frosted privacy films with corporate logos, geometric patterns, and privacy dustings. |
+| 8 | **Feature Murals & Internal Branding** | Internal Branding | Seamless architectural wall coverings communicating brand heritage, values, or custom biophilic artwork. |
+| 9 | **Signage Installation** | Services | Certified rigging technicians utilizing boom lifts, scaffolding, and load-tested anchor bolts. |
+| 10 | **Signage Renovation & Maintenance** | Services | LED module & driver retrofits, structural reinforcement, ACP recoating, face panel replacement & maintenance. |
+| 11 | **Site Survey & Consultation** | Planning | Precise laser measurements, electrical load calculations, angle audits, and structural suitability reports. |
+| 12 | **Signage Design & Project Planning** | Planning | Photorealistic 3D architectural mockups, structural CAD drawings, material BOQs, and milestone schedules. |
+| 13 | **Wayfinding & Directional Signage** | Architectural | Directory monoliths, ceiling suspended arrows, tactile braille room signs, and floor level markers. |
+| 14 | **Commercial & Retail Signage Solutions**| Turnkey | End-to-end multi-asset retail packages combining pylon, entrance 3D LED letters, POS displays & window films. |
+| 15 | **One-Way Vision Pasting** | Window | Perforated window films allowing vivid exterior branding while preserving interior optical clarity. |
+| 16 | **Commercial Vinyl Graphics** | Graphics | High-tack polymeric UV-cured vinyl wraps for walls, retail storefronts, floors, and promotional areas. |
 
 ---
 
