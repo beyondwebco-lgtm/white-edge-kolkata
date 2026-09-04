@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
@@ -9,7 +9,6 @@ import {
 } from "@/config/ourWorkData";
 import { SITE_CONFIG } from "@/config/site";
 import { 
-  Search, 
   Maximize2, 
   ArrowLeft, 
   ArrowRight, 
@@ -21,64 +20,68 @@ import {
   CheckCircle2, 
   Sparkles,
   Layers,
-  MapPin,
-  SlidersHorizontal
+  Wrench,
+  Lightbulb,
+  ShieldCheck,
+  Eye,
+  Images
 } from "lucide-react";
 
 export default function OurWorkGallery() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  // Active modal project index
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
+  // Current active image index within the modal
+  const [modalImageIndex, setModalImageIndex] = useState<number>(0);
 
-  const categories = [
-    "All",
-    "3D Letters",
-    "LED Signage",
-    "Storefronts",
-    "Façade Branding",
-    "Pylon Signs",
-    "Internal Branding",
-    "Commercial Signage",
-  ];
+  // Per-card slideshow active image indices: { [projectId]: activeImageIndex }
+  const [cardImageIndices, setCardImageIndices] = useState<Record<string, number>>({});
 
-  // Filter projects by category and search
-  const filteredProjects = useMemo(() => {
-    return OUR_WORK_PROJECTS.filter((project) => {
-      const matchesCategory =
-        selectedCategory === "All" || project.category === selectedCategory || project.tags.includes(selectedCategory);
-      
-      const query = searchQuery.toLowerCase().trim();
-      const matchesSearch =
-        !query ||
-        project.title.toLowerCase().includes(query) ||
-        project.tagline.toLowerCase().includes(query) ||
-        project.description.toLowerCase().includes(query) ||
-        project.materials.some((m) => m.toLowerCase().includes(query)) ||
-        project.tags.some((t) => t.toLowerCase().includes(query));
+  const activeProject: SignProjectItem | null =
+    activeModalIndex !== null ? OUR_WORK_PROJECTS[activeModalIndex] : null;
 
-      return matchesCategory && matchesSearch;
-    });
-  }, [selectedCategory, searchQuery]);
-
-  const activeProject = activeModalIndex !== null ? filteredProjects[activeModalIndex] : null;
+  const handleOpenModal = (index: number) => {
+    setActiveModalIndex(index);
+    const projectId = OUR_WORK_PROJECTS[index].id;
+    setModalImageIndex(cardImageIndices[projectId] || 0);
+  };
 
   const handlePrevProject = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (activeModalIndex !== null && filteredProjects.length > 0) {
-      setActiveModalIndex((activeModalIndex - 1 + filteredProjects.length) % filteredProjects.length);
+    if (activeModalIndex !== null) {
+      const prevIdx = (activeModalIndex - 1 + OUR_WORK_PROJECTS.length) % OUR_WORK_PROJECTS.length;
+      setActiveModalIndex(prevIdx);
+      setModalImageIndex(0);
     }
   };
 
   const handleNextProject = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (activeModalIndex !== null && filteredProjects.length > 0) {
-      setActiveModalIndex((activeModalIndex + 1) % filteredProjects.length);
+    if (activeModalIndex !== null) {
+      const nextIdx = (activeModalIndex + 1) % OUR_WORK_PROJECTS.length;
+      setActiveModalIndex(nextIdx);
+      setModalImageIndex(0);
     }
+  };
+
+  const handleCardPrevSlide = (e: React.MouseEvent, projectId: string, totalImages: number) => {
+    e.stopPropagation();
+    setCardImageIndices((prev) => {
+      const current = prev[projectId] || 0;
+      return { ...prev, [projectId]: (current - 1 + totalImages) % totalImages };
+    });
+  };
+
+  const handleCardNextSlide = (e: React.MouseEvent, projectId: string, totalImages: number) => {
+    e.stopPropagation();
+    setCardImageIndices((prev) => {
+      const current = prev[projectId] || 0;
+      return { ...prev, [projectId]: (current + 1) % totalImages };
+    });
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Top Breadcrumb & Return Navigation */}
+      {/* Top Navigation */}
       <div className="mb-8 flex items-center justify-between">
         <Link
           href="/"
@@ -87,17 +90,18 @@ export default function OurWorkGallery() {
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Back to Home
         </Link>
-        <span className="text-xs font-mono text-gray-500 uppercase">
-          {OUR_WORK_PROJECTS.length} Real Installations Showcased
+        <span className="text-xs font-mono text-gray-500 uppercase flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-[#EF2028] animate-pulse"></span>
+          {OUR_WORK_PROJECTS.length} Completed Projects
         </span>
       </div>
 
       {/* Header Section */}
-      <div className="text-center max-w-4xl mx-auto mb-12 space-y-4">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200">
+      <div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16 space-y-4">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200 shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-[#EF2028]" />
           <span className="text-xs uppercase font-mono tracking-widest text-[#EF2028] font-bold">
-            Real-World Project Showcase
+            Real Signage Portfolio
           </span>
         </div>
 
@@ -106,151 +110,115 @@ export default function OurWorkGallery() {
         </h1>
 
         <p className="text-base sm:text-lg text-gray-600 font-normal leading-relaxed max-w-3xl mx-auto">
-          Explore our extensive real-world portfolio of bespoke LED signboards, stainless steel 3D channel letters, ACP façade elevations, high-mast highway pylons, and architectural storefronts crafted for leading businesses.
+          Explore our completed portfolio of bespoke 3D channel letters, ACP façade claddings, high-impact rooftop installations, and illuminated brand identities.
         </p>
       </div>
 
-      {/* Search & Category Filter Bar */}
-      <div className="mb-10 space-y-4">
-        {/* Search Input Bar */}
-        <div className="max-w-xl mx-auto relative">
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-            <Search className="w-4 h-4" />
-          </div>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by sign type, material (e.g. Acrylic, LED, Steel), or keyword..."
-            className="w-full pl-10 pr-10 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#EF2028] focus:ring-2 focus:ring-red-100 transition-all shadow-sm"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          )}
-        </div>
+      {/* Full Collage Grid - 10 Unique Projects */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {OUR_WORK_PROJECTS.map((project, idx) => {
+          const currentSlide = cardImageIndices[project.id] || 0;
+          const currentImage = project.images[currentSlide] || project.images[0];
+          const hasMultipleImages = project.images.length > 1;
 
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-          {categories.map((cat) => {
-            const isSelected = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
-                  isSelected
-                    ? "bg-[#EF2028] text-white shadow-md shadow-red-500/20 scale-105"
-                    : "bg-white text-gray-700 border border-gray-200 hover:border-gray-400 hover:bg-gray-50"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Filter Summary */}
-        <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-b border-gray-200 pb-4">
-          <span className="flex items-center gap-1.5 font-medium">
-            <SlidersHorizontal className="w-3.5 h-3.5 text-[#EF2028]" />
-            Showing <strong className="text-gray-900">{filteredProjects.length}</strong> of {OUR_WORK_PROJECTS.length} signs
-          </span>
-          {(selectedCategory !== "All" || searchQuery) && (
-            <button
-              onClick={() => {
-                setSelectedCategory("All");
-                setSearchQuery("");
-              }}
-              className="text-[#EF2028] font-bold hover:underline"
-            >
-              Reset Filters
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Grid of Work Items */}
-      {filteredProjects.length === 0 ? (
-        <div className="text-center py-20 bg-white rounded-2xl border border-gray-200 p-8 space-y-4 shadow-sm">
-          <div className="w-16 h-16 mx-auto rounded-full bg-red-50 flex items-center justify-center text-[#EF2028]">
-            <Search className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-heading font-bold text-gray-800">No matching signage projects found</h3>
-          <p className="text-sm text-gray-500 max-w-md mx-auto">
-            Try adjusting your search query or reset category filters to view all signs.
-          </p>
-          <button
-            onClick={() => {
-              setSelectedCategory("All");
-              setSearchQuery("");
-            }}
-            className="px-6 py-2.5 rounded-lg bg-[#111214] text-white text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors"
-          >
-            Show All Signs
-          </button>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredProjects.map((project, idx) => (
+          return (
             <div
               key={project.id}
-              onClick={() => setActiveModalIndex(idx)}
-              className="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-red-300 transition-all duration-300 flex flex-col cursor-pointer"
+              onClick={() => handleOpenModal(idx)}
+              className="group relative bg-[#0E0F12] rounded-2xl overflow-hidden border border-gray-200/80 hover:border-[#EF2028] shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col cursor-pointer"
             >
-              {/* Image Container with Perfect Fit, Ambient Backdrop, Zoom and Badge */}
-              <div className="relative h-72 sm:h-80 w-full bg-[#0E0F12] overflow-hidden flex items-center justify-center">
-                {/* Ambient Blurred Background to harmonize card fill */}
+              {/* Image Slideshow Container */}
+              <div className="relative h-72 sm:h-80 w-full overflow-hidden flex items-center justify-center bg-[#090A0D]">
+                {/* Ambient Blurred Background */}
                 <Image
-                  src={project.image}
+                  src={currentImage}
                   alt=""
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover blur-2xl opacity-35 scale-125"
+                  className="object-cover blur-2xl opacity-35 scale-125 transition-transform duration-700 group-hover:scale-135"
                   aria-hidden="true"
                 />
 
-                {/* Main Sign Image - Perfectly Contained & Uncropped */}
+                {/* Main Signage Image */}
                 <div className="relative w-full h-full p-3.5 flex items-center justify-center z-10">
                   <Image
-                    src={project.image}
+                    src={currentImage}
                     alt={project.title}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-contain p-2 group-hover:scale-105 transition-transform duration-500 drop-shadow-md"
+                    className="object-contain p-2 group-hover:scale-105 transition-all duration-500 drop-shadow-xl"
                   />
                 </div>
 
-                {/* Dark Gradient Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 z-20">
+                {/* Top Client & Multi-Image Badge */}
+                <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between gap-2">
+                  <span className="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-black/85 backdrop-blur-md text-white border border-white/20 shadow-md truncate">
+                    {project.client}
+                  </span>
+
+                  {hasMultipleImages && (
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-black/80 backdrop-blur-md text-white border border-white/20 shadow flex items-center gap-1.5">
+                      <Images className="w-3 h-3 text-[#EF2028]" />
+                      {currentSlide + 1}/{project.images.length}
+                    </span>
+                  )}
+                </div>
+
+                {/* In-Card Slideshow Navigation Controls (for multi-image projects) */}
+                {hasMultipleImages && (
+                  <>
+                    <button
+                      onClick={(e) => handleCardPrevSlide(e, project.id, project.images.length)}
+                      className="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/70 hover:bg-[#EF2028] text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 shadow-md"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={(e) => handleCardNextSlide(e, project.id, project.images.length)}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/70 hover:bg-[#EF2028] text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 shadow-md"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+
+                    {/* Slideshow Dot Indicators */}
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full">
+                      {project.images.map((_, dotIdx) => (
+                        <span
+                          key={dotIdx}
+                          className={`w-1.5 h-1.5 rounded-full transition-all ${
+                            currentSlide === dotIdx ? "bg-[#EF2028] w-3" : "bg-white/60"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {/* Hover Overlay with Technical View Trigger */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 z-10 pointer-events-none">
                   <div className="flex items-center justify-between w-full text-white">
-                    <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                      <Maximize2 className="w-3.5 h-3.5 text-[#EF2028]" /> Click for Full View & Quote
+                    <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 text-red-400">
+                      <Maximize2 className="w-3.5 h-3.5 text-[#EF2028]" /> Click for Technical Specs & Quote
+                    </span>
+                    <span className="p-1.5 rounded-full bg-white/20 backdrop-blur-md text-white">
+                      <Eye className="w-4 h-4" />
                     </span>
                   </div>
                 </div>
-
-                {/* Top Category Badge */}
-                <div className="absolute top-3 left-3 z-20">
-                  <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-black/85 backdrop-blur-md text-white border border-white/20 shadow-md">
-                    {project.category}
-                  </span>
-                </div>
               </div>
 
-              {/* Card Body */}
-              <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
+              {/* Bottom Card Content */}
+              <div className="p-5 bg-white flex-grow flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
-                    <MapPin className="w-3.5 h-3.5 text-[#EF2028]" />
-                    <span>{project.location}</span>
+                  <div className="flex items-center justify-between text-xs font-semibold">
+                    <span className="text-[#EF2028] font-bold uppercase tracking-wider">
+                      {project.category}
+                    </span>
                   </div>
 
-                  <h3 className="text-lg font-heading font-bold text-[#111214] group-hover:text-[#EF2028] transition-colors leading-tight">
+                  <h3 className="text-base sm:text-lg font-heading font-bold text-[#111214] group-hover:text-[#EF2028] transition-colors leading-snug">
                     {project.title}
                   </h3>
 
@@ -259,13 +227,13 @@ export default function OurWorkGallery() {
                   </p>
                 </div>
 
-                {/* Material Tags & Action Button */}
-                <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
+                {/* Materials & Action Footer */}
+                <div className="pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
                   <div className="flex flex-wrap gap-1">
-                    {project.materials.slice(0, 2).map((mat, i) => (
+                    {project.materials.slice(0, 2).map((mat, mIdx) => (
                       <span
-                        key={i}
-                        className="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-medium text-gray-600"
+                        key={mIdx}
+                        className="px-2 py-0.5 rounded bg-gray-100 text-[10px] font-medium text-gray-600 truncate max-w-[120px]"
                       >
                         {mat}
                       </span>
@@ -277,41 +245,41 @@ export default function OurWorkGallery() {
                     )}
                   </div>
 
-                  <span className="text-xs font-bold text-[#EF2028] group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                    View
+                  <span className="text-xs font-bold text-[#EF2028] group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
+                    View Details
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      )}
+          );
+        })}
+      </div>
 
       {/* Lightbox / Detail Modal */}
       {activeProject && activeModalIndex !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 md:p-10 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 md:p-10 animate-in fade-in duration-200"
           onClick={() => setActiveModalIndex(null)}
         >
           <div
-            className="relative bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-200 flex flex-col lg:flex-row overflow-hidden"
+            className="relative bg-white rounded-2xl max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-gray-200 flex flex-col lg:flex-row overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setActiveModalIndex(null)}
-              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/60 hover:bg-black text-white transition-colors"
+              className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-black/70 hover:bg-[#EF2028] text-white transition-colors shadow-lg"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {/* Left/Top: Image Column with Ambient Background and Contained Fit */}
-            <div className="relative lg:w-3/5 bg-[#090A0D] min-h-[380px] sm:min-h-[500px] md:min-h-[580px] flex items-center justify-center group/nav overflow-hidden">
+            {/* Left Slideshow Column */}
+            <div className="relative lg:w-3/5 bg-[#090A0D] min-h-[360px] sm:min-h-[480px] md:min-h-[560px] flex items-center justify-center overflow-hidden">
               {/* Subtle ambient blurred background */}
               <Image
-                src={activeProject.image}
+                src={activeProject.images[modalImageIndex] || activeProject.images[0]}
                 alt=""
                 fill
                 className="object-cover blur-3xl opacity-30 scale-125"
@@ -319,9 +287,9 @@ export default function OurWorkGallery() {
               />
 
               {/* Main Full Fit Signage Image */}
-              <div className="relative w-full h-full min-h-[380px] sm:min-h-[500px] md:min-h-[580px] p-4 sm:p-6 flex items-center justify-center z-10">
+              <div className="relative w-full h-full min-h-[360px] sm:min-h-[480px] md:min-h-[560px] p-4 sm:p-6 flex items-center justify-center z-10">
                 <Image
-                  src={activeProject.image}
+                  src={activeProject.images[modalImageIndex] || activeProject.images[0]}
                   alt={activeProject.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 60vw"
@@ -330,35 +298,59 @@ export default function OurWorkGallery() {
                 />
               </div>
 
-              {/* Prev Project Button */}
+              {/* Project Prev/Next Switchers */}
               <button
                 onClick={handlePrevProject}
-                className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/80 hover:bg-white text-[#111214] shadow-lg transition-transform hover:scale-110"
-                aria-label="Previous image"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-white text-[#111214] shadow-xl transition-transform hover:scale-110 z-20"
+                aria-label="Previous project"
+                title="Previous Project"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
 
-              {/* Next Project Button */}
               <button
                 onClick={handleNextProject}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/80 hover:bg-white text-[#111214] shadow-lg transition-transform hover:scale-110"
-                aria-label="Next image"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 hover:bg-white text-[#111214] shadow-xl transition-transform hover:scale-110 z-20"
+                aria-label="Next project"
+                title="Next Project"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
 
-              {/* Image Counter */}
-              <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-mono">
-                {activeModalIndex + 1} / {filteredProjects.length}
+              {/* Bottom Slideshow Thumbnails / Dots for Multi-Image Project */}
+              <div className="absolute bottom-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between">
+                <div className="bg-black/75 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-mono border border-white/20">
+                  Project {activeModalIndex + 1} of {OUR_WORK_PROJECTS.length}
+                </div>
+
+                {activeProject.images.length > 1 && (
+                  <div className="flex items-center gap-2 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+                    {activeProject.images.map((img, iIdx) => (
+                      <button
+                        key={iIdx}
+                        onClick={() => setModalImageIndex(iIdx)}
+                        className={`text-xs px-2 py-0.5 rounded font-mono font-bold transition-all ${
+                          modalImageIndex === iIdx
+                            ? "bg-[#EF2028] text-white shadow"
+                            : "text-white/70 hover:text-white"
+                        }`}
+                      >
+                        Photo {iIdx + 1}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* Right/Bottom: Details Column */}
-            <div className="lg:w-2/5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
+            {/* Right Details Column */}
+            <div className="lg:w-2/5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white overflow-y-auto">
               <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200">
-                  <span className="text-[11px] uppercase font-mono tracking-wider text-[#EF2028] font-bold">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[#EF2028] text-xs font-mono font-bold uppercase tracking-wider">
+                    {activeProject.client}
+                  </span>
+                  <span className="text-xs text-gray-500 font-semibold uppercase">
                     {activeProject.category}
                   </span>
                 </div>
@@ -367,32 +359,65 @@ export default function OurWorkGallery() {
                   {activeProject.title}
                 </h2>
 
-                <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed">
+                {activeProject.warranty && (
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    {activeProject.warranty}
+                  </div>
+                )}
+
+                <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed">
                   {activeProject.description}
                 </p>
 
-                {/* Key Specifications */}
-                <div className="space-y-2 pt-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#EF2028]" /> Engineering Highlights
-                  </h4>
-                  <ul className="space-y-1 pl-5 list-disc text-xs text-gray-600">
-                    {activeProject.specifications.map((spec, i) => (
-                      <li key={i}>{spec}</li>
-                    ))}
-                  </ul>
-                </div>
+                {/* Engineering Highlights */}
+                {activeProject.specifications.length > 0 && (
+                  <div className="space-y-2 pt-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-900 flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#EF2028]" /> Engineering & Specs
+                    </h4>
+                    <ul className="space-y-1.5 pl-5 list-disc text-xs text-gray-600">
+                      {activeProject.specifications.map((spec, sIdx) => (
+                        <li key={sIdx}>{spec}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-                {/* Materials Used */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-gray-800 flex items-center gap-1.5">
-                    <Layers className="w-4 h-4 text-[#EF2028]" /> Materials & Components
+                {/* Framework / Structure */}
+                {activeProject.framework && (
+                  <div className="space-y-1 pt-1">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-900 flex items-center gap-1.5">
+                      <Wrench className="w-3.5 h-3.5 text-[#EF2028]" /> Framework / Structure
+                    </h4>
+                    <p className="text-xs text-gray-600 pl-5">
+                      {activeProject.framework}
+                    </p>
+                  </div>
+                )}
+
+                {/* Lighting Details */}
+                {activeProject.lighting && (
+                  <div className="space-y-1 pt-1">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-900 flex items-center gap-1.5">
+                      <Lightbulb className="w-3.5 h-3.5 text-amber-500" /> Lighting & Power
+                    </h4>
+                    <p className="text-xs text-gray-600 pl-5">
+                      {activeProject.lighting}
+                    </p>
+                  </div>
+                )}
+
+                {/* Materials & Components */}
+                <div className="space-y-2 pt-1">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-gray-900 flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-[#EF2028]" /> Materials Used
                   </h4>
                   <div className="flex flex-wrap gap-1.5">
-                    {activeProject.materials.map((mat, i) => (
+                    {activeProject.materials.map((mat, mIdx) => (
                       <span
-                        key={i}
-                        className="px-2.5 py-1 rounded bg-gray-100 text-xs font-medium text-gray-700"
+                        key={mIdx}
+                        className="px-2.5 py-1 rounded bg-gray-100 text-xs font-medium text-gray-700 border border-gray-200/60"
                       >
                         {mat}
                       </span>
@@ -401,18 +426,18 @@ export default function OurWorkGallery() {
                 </div>
               </div>
 
-              {/* Direct Actions */}
+              {/* Action Buttons */}
               <div className="pt-4 border-t border-gray-200 space-y-2.5">
                 <a
                   href={`https://wa.me/${SITE_CONFIG.whatsappRaw}?text=${encodeURIComponent(
-                    `Hi White Edge Signages, I am interested in a signage solution similar to "${activeProject.title}" (Ref: ${activeProject.id}). Please share more details and a quotation.`
+                    `Hi White Edge Signages, I saw your completed work for "${activeProject.title}" (Client: ${activeProject.client}). I am looking for a similar signage solution. Please share details and a quotation.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all duration-200 hover:scale-[1.02]"
+                  className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition-all duration-200 hover:scale-[1.02]"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  Request Quote for this Sign
+                  Get WhatsApp Quote for this Sign
                 </a>
 
                 <Link
@@ -421,7 +446,7 @@ export default function OurWorkGallery() {
                   className="w-full py-3 px-4 rounded-xl bg-[#111214] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 text-center"
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
-                  Book a Free Site Survey
+                  Book Free Site Inspection & Measurement
                 </Link>
               </div>
             </div>
@@ -433,15 +458,15 @@ export default function OurWorkGallery() {
       <div className="mt-20 rounded-3xl bg-[#111214] text-white p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
         <div className="relative z-10 max-w-3xl mx-auto space-y-6">
           <span className="px-4 py-1.5 rounded-full bg-[#EF2028]/20 border border-[#EF2028]/40 text-[#EF2028] text-xs font-mono font-bold tracking-widest uppercase">
-            Custom Manufacturing & Turnkey Setup
+            Custom Fabrication & Turnkey Installation
           </span>
 
           <h2 className="text-3xl sm:text-5xl font-heading font-extrabold uppercase tracking-tight">
-            Have a Specific Sign Design in Mind?
+            Need Custom Signage for Your Business?
           </h2>
 
           <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto font-normal leading-relaxed">
-            Our engineering team fabricates custom signboards matching exact architectural drawings, brand pantones, and building layouts. Get a photorealistic 3D rendering and price estimate today.
+            From design and 3D architectural mockups to structural fabrication and on-site crane installation, White Edge Signages delivers end-to-end turnkey excellence.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">

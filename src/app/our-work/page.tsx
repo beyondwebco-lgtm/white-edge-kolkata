@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: `${SITE_CONFIG.url}/our-work`,
     images: [
       {
-        url: "/assets/our-work/work-01.jpeg",
+        url: "/assets/our-work/damro-furniture-1.jpeg",
         width: 1200,
         height: 630,
         alt: "White Edge Signages Completed Work",
