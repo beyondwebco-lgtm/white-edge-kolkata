@@ -42,7 +42,7 @@ This document contains the complete and official reference data for the **White 
 
 ---
 
-## 3. Comprehensive Services Catalog (16 Disciplines)
+## 3. Comprehensive Services Catalog (14 Disciplines)
 
 | # | Service Name | Category | Scope & Key Highlights |
 |---|--------------|----------|------------------------|
@@ -57,11 +57,9 @@ This document contains the complete and official reference data for the **White 
 | 9 | **Signage Installation** | Services | Certified rigging technicians utilizing boom lifts, scaffolding, and load-tested anchor bolts. |
 | 10 | **Signage Renovation & Maintenance** | Services | LED module & driver retrofits, structural reinforcement, ACP recoating, face panel replacement & maintenance. |
 | 11 | **Site Survey & Consultation** | Planning | Precise laser measurements, electrical load calculations, angle audits, and structural suitability reports. |
-| 12 | **Signage Design & Project Planning** | Planning | Photorealistic 3D architectural mockups, structural CAD drawings, material BOQs, and milestone schedules. |
-| 13 | **Wayfinding & Directional Signage** | Architectural | Directory monoliths, ceiling suspended arrows, tactile braille room signs, and floor level markers. |
-| 14 | **Commercial & Retail Signage Solutions**| Turnkey | End-to-end multi-asset retail packages combining pylon, entrance 3D LED letters, POS displays & window films. |
-| 15 | **One-Way Vision Pasting** | Window | Perforated window films allowing vivid exterior branding while preserving interior optical clarity. |
-| 16 | **Commercial Vinyl Graphics** | Graphics | High-tack polymeric UV-cured vinyl wraps for walls, retail storefronts, floors, and promotional areas. |
+| 12 | **Commercial & Retail Signage Solutions**| Turnkey | End-to-end multi-asset retail packages combining pylon, entrance 3D LED letters, POS displays & window films. |
+| 13 | **One-Way Vision Pasting** | Window | Perforated window films allowing vivid exterior branding while preserving interior optical clarity. |
+| 14 | **Commercial Vinyl Graphics** | Graphics | High-tack polymeric UV-cured vinyl wraps for walls, retail storefronts, floors, and promotional areas. |
 
 ---
 

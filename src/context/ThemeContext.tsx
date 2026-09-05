@@ -13,10 +13,8 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const savedTheme = localStorage.getItem("white-edge-theme") as Theme;
     if (savedTheme === "light" || savedTheme === "dark") {
       setTheme(savedTheme);

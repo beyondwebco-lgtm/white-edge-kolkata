@@ -48,7 +48,7 @@ export default function TestimonialsSection() {
 
           {/* Quote Text */}
           <blockquote className="text-lg sm:text-2xl text-white font-light leading-relaxed italic">
-            "{currentItem.quote}"
+            &ldquo;{currentItem.quote}&rdquo;
           </blockquote>
 
           {/* Author Details & Slider Nav */}
