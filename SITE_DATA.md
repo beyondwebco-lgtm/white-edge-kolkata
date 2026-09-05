@@ -42,7 +42,7 @@ This document contains the complete and official reference data for the **White 
 
 ---
 
-## 3. Comprehensive Services Catalog (14 Disciplines)
+## 3. Comprehensive Services Catalog (13 Disciplines)
 
 | # | Service Name | Category | Scope & Key Highlights |
 |---|--------------|----------|------------------------|
@@ -55,11 +55,10 @@ This document contains the complete and official reference data for the **White 
 | 7 | **Frosted Film & Glass Branding** | Internal Branding | Plotter-cut frosted privacy films with corporate logos, geometric patterns, and privacy dustings. |
 | 8 | **Feature Murals & Internal Branding** | Internal Branding | Seamless architectural wall coverings communicating brand heritage, values, or custom biophilic artwork. |
 | 9 | **Signage Installation** | Services | Certified rigging technicians utilizing boom lifts, scaffolding, and load-tested anchor bolts. |
-| 10 | **Signage Renovation & Maintenance** | Services | LED module & driver retrofits, structural reinforcement, ACP recoating, face panel replacement & maintenance. |
-| 11 | **Site Survey & Consultation** | Planning | Precise laser measurements, electrical load calculations, angle audits, and structural suitability reports. |
-| 12 | **Commercial & Retail Signage Solutions**| Turnkey | End-to-end multi-asset retail packages combining pylon, entrance 3D LED letters, POS displays & window films. |
-| 13 | **One-Way Vision Pasting** | Window | Perforated window films allowing vivid exterior branding while preserving interior optical clarity. |
-| 14 | **Commercial Vinyl Graphics** | Graphics | High-tack polymeric UV-cured vinyl wraps for walls, retail storefronts, floors, and promotional areas. |
+| 10 | **Site Survey & Consultation** | Planning | Precise laser measurements, electrical load calculations, angle audits, and structural suitability reports. |
+| 11 | **Commercial & Retail Signage Solutions**| Turnkey | End-to-end multi-asset retail packages combining pylon, entrance 3D LED letters, POS displays & window films. |
+| 12 | **One-Way Vision Pasting** | Window | Perforated window films allowing vivid exterior branding while preserving interior optical clarity. |
+| 13 | **Commercial Vinyl Graphics** | Graphics | High-tack polymeric UV-cured vinyl wraps for walls, retail storefronts, floors, and promotional areas. |
 
 ---
 

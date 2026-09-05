@@ -166,17 +166,7 @@ export const SITE_CONFIG = {
       width: 1024,
       height: 1536,
     },
-    {
-      id: "maintenance-service",
-      title: "Signage Renovation & Maintenance",
-      shortDesc: "Comprehensive signage renovation, structural refurbishment, LED upgrades, face cleaning, and preventive maintenance.",
-      fullDesc: "Breathe new life into aging, weathered, or damaged signboards. We provide complete signage renovation, structural reinforcement, high-efficiency LED module & driver upgrades, ACP panel recoating, face panel replacement, electrical audits, and scheduled preventive maintenance.",
-      category: "Services",
-      icon: "ShieldAlert",
-      image: "/assets/img22.jpg",
-      width: 1024,
-      height: 1536,
-    },
+
     {
       id: "site-survey-consultation",
       title: "Site Survey and Consultation",
