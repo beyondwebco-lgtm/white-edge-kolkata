@@ -33,6 +33,7 @@ export default function Footer() {
                   alt="White Edge Signages Logo"
                   fill
                   className="object-contain p-0.5"
+                  unoptimized
                 />
               </div>
             </Link>

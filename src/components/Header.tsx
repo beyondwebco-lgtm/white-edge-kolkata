@@ -50,6 +50,7 @@ export default function Header() {
               fill
               className="object-contain"
               priority
+              unoptimized
             />
           </div>
         </Link>
