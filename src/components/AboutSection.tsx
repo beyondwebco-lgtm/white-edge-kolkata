@@ -78,50 +78,26 @@ export default function AboutSection() {
           {/* Right Column: Editorial Image Layout */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none space-y-4">
-              {/* Main Editorial Image */}
-              <div className="relative h-[320px] sm:h-[400px] w-full rounded-2xl overflow-hidden border border-gray-200 shadow-xl group">
+              {/* Image 1 */}
+              <div className="relative h-[320px] sm:h-[360px] w-full rounded-2xl overflow-hidden border border-gray-200 shadow-xl group">
                 <Image
-                  src="/assets/img14.jpg"
-                  alt="White Edge Signages Storefront Showcase"
+                  src="/assets/DESIGN 4.jpg.jpeg"
+                  alt="White Edge Signages Showcase 1"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-lg bg-white/95 border border-gray-200 backdrop-blur-md">
-                  <p className="text-xs font-heading font-bold text-[#111214] uppercase tracking-wider">
-                    Storefront & Retail Signage
-                  </p>
-                  <p className="text-[11px] text-[#EF2028] font-mono">Precision Backlit 3D Lettering</p>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/60 via-transparent to-transparent opacity-80" />
               </div>
 
-              {/* Grid of 2 Secondary Editorial Images */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative h-[160px] rounded-xl overflow-hidden border border-gray-200 shadow-md group">
-                  <Image
-                    src="/assets/img28.jpg"
-                    alt="White Edge Architectural Façade Signage"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/70 via-transparent to-transparent opacity-70" />
-                  <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-black/70 px-2 py-0.5 rounded">
-                    Façade Cladding
-                  </span>
-                </div>
-
-                <div className="relative h-[160px] rounded-xl overflow-hidden border border-gray-200 shadow-md group">
-                  <Image
-                    src="/assets/img34.jpg"
-                    alt="White Edge Illuminated 3D Signage"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/70 via-transparent to-transparent opacity-70" />
-                  <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-black/70 px-2 py-0.5 rounded">
-                    Back-lit 3D Letters
-                  </span>
-                </div>
+              {/* Image 2 */}
+              <div className="relative h-[240px] sm:h-[300px] w-full rounded-2xl overflow-hidden border border-gray-200 shadow-xl group">
+                <Image
+                  src="/assets/DESIGN 5.png"
+                  alt="White Edge Signages Showcase 2"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/60 via-transparent to-transparent opacity-80" />
               </div>
             </div>
           </div>
