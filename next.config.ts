@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
     imageSizes: [64, 128, 256, 384],
     qualities: [75],
     minimumCacheTTL: 31536000,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
   },
 };
 

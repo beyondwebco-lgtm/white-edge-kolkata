@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import OurWorkGallery from "./OurWorkGallery";
 import { SITE_CONFIG } from "@/config/site";
+import { getProjects, getCategories } from "@/sanity/api";
+
+export const revalidate = 60; // ISR revalidation
 
 export const metadata: Metadata = {
   title: "Our Work & Signage Portfolio | Real-World Completed Projects",
@@ -22,10 +25,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function OurWorkPage() {
+export default async function OurWorkPage() {
+  const [projects, categories] = await Promise.all([
+    getProjects(),
+    getCategories(),
+  ]);
+
   return (
     <div className="pt-24 pb-20 bg-[#FDFDFD] text-[#111214] min-h-screen">
-      <OurWorkGallery />
+      <OurWorkGallery initialProjects={projects} categories={categories} />
     </div>
   );
 }
