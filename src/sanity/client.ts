@@ -8,5 +8,5 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // `true` gives fast, edge-cached published reads
+  useCdn: false, // `false` ensures newly published/updated content reflects immediately
 });
